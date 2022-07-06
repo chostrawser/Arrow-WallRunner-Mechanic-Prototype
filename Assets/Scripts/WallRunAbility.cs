@@ -46,7 +46,7 @@ public class WallRunAbility : playerAbility
         if (left.canJumpLeft == true && right.canJumpRight == false)            //left run
         {
             transform.rotation = Quaternion.FromToRotation(Vector3.right, wall.GetContact(0).normal);
-            posCorrection = 0.3f;
+            posCorrection = 0.005f;
 
             anim.SetTrigger("wallRunLeft");
         }
@@ -54,7 +54,7 @@ public class WallRunAbility : playerAbility
         else if (right.canJumpRight == true && left.canJumpLeft == false)       //right run
         {
             transform.rotation = Quaternion.FromToRotation(Vector3.left, wall.GetContact(0).normal);
-            posCorrection = 0.3f;
+            posCorrection = 0.005f;
 
             anim.SetTrigger("wallRunRight");
         }

@@ -19,7 +19,6 @@ public class playerController : MonoBehaviour
     public AudioSource fireCue;                         //variables
     public AudioSource jumpCue;
     public AudioSource landCue;
-    public AudioSource footstepsCue;
     public float moveSpeed;
     public float turnSpeed;
     public float jumpStrength;
@@ -33,7 +32,7 @@ public class playerController : MonoBehaviour
         playerRB = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
 
-        //playerRB.maxDepenetrationVelocity = 50f;
+        playerRB.maxDepenetrationVelocity = 50f;
     }
 
     void Start()
@@ -133,19 +132,7 @@ public class playerController : MonoBehaviour
     {
         anim.SetBool("isMoving", true);
 
-
         playerRB.MovePosition(transform.localPosition + transform.forward * moveSpeed);
-
-        if (!footstepsCue.isPlaying && anim.GetBool("isGrounded") == true)   //sound
-        {
-            if (anim.GetBool("isSprinting") == false)
-                footstepsCue.pitch = 0.6f;
-
-            else
-                footstepsCue.pitch = 1f;
-
-            footstepsCue.Play();
-        }
 
         if (anim.GetBool("isSprinting") == true)    //animations
           anim.SetTrigger("sprintForward");
@@ -192,8 +179,6 @@ public class playerController : MonoBehaviour
         anim.SetTrigger("stop");
         anim.SetBool("isMoving", false);
         anim.SetBool("isSprinting", false);
-
-        footstepsCue.Stop();
     }
 
 }
